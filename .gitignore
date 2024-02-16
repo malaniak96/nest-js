@@ -2,7 +2,7 @@
 /dist
 /node_modules
 /build
-/.idea
+nest-js.iml
 
 # Logs
 logs
