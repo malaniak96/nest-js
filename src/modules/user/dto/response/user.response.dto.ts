@@ -1,10 +1,9 @@
-
 export class UserResponseDto {
-    id: string;
+  id: string;
 
-    name: string;
+  name: string;
 
-    age: number;
+  age: number;
 
-    email: string;
+  email: string;
 }
