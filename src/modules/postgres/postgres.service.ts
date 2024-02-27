@@ -11,6 +11,7 @@ import { Config, PostgresConfig } from '../../configs/config.type';
 
 @Injectable()
 export class PostgresService implements TypeOrmOptionsFactory {
+  // eslint-disable-next-line no-unused-vars
   constructor(private readonly configService: ConfigService<Config>) {}
   createTypeOrmOptions(): TypeOrmModuleOptions {
     const postgresConfig = this.configService.get<PostgresConfig>('postgres');
@@ -22,8 +23,26 @@ export class PostgresService implements TypeOrmOptionsFactory {
       password: postgresConfig.password,
       database: postgresConfig.dbName,
       entities: [
-        path.join(process.cwd(), 'dist', 'database', 'entities', '*.entity.js'),
+        path.join(
+          process.cwd(),
+          'dist',
+          'src',
+          'database',
+          'entities',
+          '*.entity.js',
+        ),
       ],
+      migrations: [
+        path.join(
+          process.cwd(),
+          'dist',
+          'src',
+          'database',
+          'migrations',
+          '*.js',
+        ),
+      ],
+      migrationsRun: true,
       synchronize: false,
     };
   }
