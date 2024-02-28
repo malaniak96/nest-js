@@ -4,6 +4,7 @@ import { CacheCustom } from '../../../common/decorators/cache-method.decorator';
 
 @Injectable()
 export class UserService {
+  // constructor(private readonly userRepository: UserRepository) {}
   //createUserDto: CreateUserDto
   public async create(): Promise<any> {
     return 'This action adds a new user';
