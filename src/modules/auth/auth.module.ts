@@ -7,10 +7,11 @@ import { AuthService } from './services/auth.service';
 import { AuthCacheService } from './services/auth-cache.service';
 import { TokenService } from './services/token.service';
 import { RedisModule } from '../redis/redis.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   controllers: [AuthController],
-  imports: [JwtModule, RedisModule],
+  imports: [JwtModule, RedisModule, UserModule],
   providers: [
     {
       provide: APP_GUARD,

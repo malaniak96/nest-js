@@ -6,10 +6,12 @@ import configuration from '../configs/configs';
 import { PostgresModule } from './postgres/postgres.module';
 import { RepositoryModule } from './repositories/repository.module';
 import { AuthModule } from './auth/auth.module';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
     PostgresModule,
+    RedisModule,
     ConfigModule.forRoot({
       load: [configuration],
       isGlobal: true,

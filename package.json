@@ -47,7 +47,8 @@
     "reflect-metadata": "^0.2.1",
     "rxjs": "^7.8.1",
     "typeorm": "^0.3.20",
-    "validator": "^13.11.0"
+    "validator": "^13.11.0",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.3.2",
