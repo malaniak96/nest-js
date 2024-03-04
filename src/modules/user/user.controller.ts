@@ -13,12 +13,14 @@ import { UserService } from './services/user.service';
 import { CreateUserDto } from './dto/request/create-user.dto';
 import { UserResponseDto } from './dto/response/user.response.dto';
 import { UpdateUserDto } from './dto/request/update-user.dto';
+import { SkipAuth } from '../auth/decorators/skip-auth.decorator';
 
 @ApiTags('User')
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @SkipAuth()
   @Post()
   public async create(@Body() dto: CreateUserDto): Promise<UserResponseDto> {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -26,6 +28,7 @@ export class UserController {
     return await this.userService.create(dto);
   }
 
+  @SkipAuth()
   @Get()
   public async findAll(): Promise<string> {
     return await this.userService.findAll();
