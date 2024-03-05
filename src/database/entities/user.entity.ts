@@ -19,7 +19,7 @@ export class UserEntity extends BaseEntity {
   password: string;
 
   @Column('text', { nullable: true })
-  bio?: number;
+  bio?: string;
 
   @Column('text', { nullable: true })
   image?: string;
