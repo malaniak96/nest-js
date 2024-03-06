@@ -1,6 +1,7 @@
 import { UserEntity } from '../../../database/entities/user.entity';
 import { TokenResponseDto } from '../dto/response/token.response';
 import { AuthUserResponseDto } from '../dto/response/auth-user.response';
+import { UserMapper } from '../../user/services/user.mapper';
 
 export class AuthMapper {
   public static toResponseDto(
@@ -8,7 +9,7 @@ export class AuthMapper {
     tokens: TokenResponseDto,
   ): AuthUserResponseDto {
     return {
-      user: userEntity,
+      user: UserMapper.toResponseDto(userEntity),
       tokens,
     };
   }

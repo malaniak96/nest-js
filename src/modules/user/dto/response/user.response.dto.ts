@@ -4,4 +4,5 @@ export class UserResponseDto {
   email: string;
   image: string;
   bio: string;
+  isFollowed: boolean;
 }

@@ -41,9 +41,9 @@ export class UserController {
     return await this.userService.updateMe(userData, dto);
   }
   @SkipAuth()
-  @Get(':id')
+  @Get(':userId')
   public async getPublicUser(
-    @Param('id', ParseUUIDPipe) userId: string,
+    @Param('userId', ParseUUIDPipe) userId: string,
   ): Promise<UserResponseDto> {
     return await this.userService.getPublicUser(userId);
   }
