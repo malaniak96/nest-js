@@ -20,11 +20,25 @@ export class ArticleRepository extends Repository<ArticleEntity> {
       'like.user_id = :myId',
     );
     queryBuilder.leftJoinAndSelect('article.user', 'user');
+    queryBuilder.leftJoinAndSelect('article.tags', 'tag');
     queryBuilder.leftJoinAndSelect(
       'user.followings',
       'follow',
       'follow.follower_id = :myId',
     );
+
+    if (query.tag) {
+      queryBuilder.andWhere('tag.name = :tag');
+      queryBuilder.setParameter('tag', query.tag);
+    }
+
+    if (query.search) {
+      queryBuilder.andWhere(
+        'CONCAT(LOWER(article.title), LOWER(article.body), LOWER(article.description)) LIKE :search',
+      );
+      queryBuilder.setParameter('search', `%${query.search.toLowerCase()}%`);
+    }
+
     queryBuilder.setParameter('myId', userData.userId);
     queryBuilder.addOrderBy('article.created', 'DESC');
     queryBuilder.take(query.limit);
@@ -43,12 +57,13 @@ export class ArticleRepository extends Repository<ArticleEntity> {
       'like.user_id = :myId',
     );
     queryBuilder.leftJoinAndSelect('article.user', 'user');
+    queryBuilder.leftJoinAndSelect('article.tags', 'tag');
     queryBuilder.leftJoinAndSelect(
       'user.followings',
       'follow',
       'follow.follower_id = :myId',
-      { myId: userData.userId },
     );
+    queryBuilder.setParameter('myId', userData.userId);
     queryBuilder.where('article.id = :articleId', { articleId });
 
     return await queryBuilder.getOne();
